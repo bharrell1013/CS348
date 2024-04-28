@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Directors {% endblock %}</h1>
+    <div class="content">
+        {% for director in directors %}
+            <div class="director" style="margin-left: 10px;">
+                <p><b>#{{ director.id }}</b></p>
+                <b>
+                    <p class="name">
+                        <a href="{{ url_for('director', director_id=director.id)}}">{{ director.name }}</a>
+                    </p>
+                </b>
+                <form method="POST"
+                        action="{{ url_for('delete_director', director_id=director.id) }}">
+                    <input type="submit" value="Delete Director"
+                        onclick="return confirm('Are you sure you want to delete this entry?')">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert('{{ messages[0] }}');
+            </script>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

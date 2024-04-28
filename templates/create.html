@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Create New Entry</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Select Type:</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{{ url_for('create_movie') }}">Create Movie</a></li>
+                            <li class="list-group-item"><a href="{{ url_for('create_genre') }}">Create Genre</a></li>
+                            <li class="list-group-item"><a href="{{ url_for('create_director') }}">Create Director</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

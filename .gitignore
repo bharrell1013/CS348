@@ -1,0 +1,11 @@
+/.gcloudignore
+/README.md
+/__pycache__
+/app.yaml
+/database.db
+/google-cloud-cli-473.0.0-linux-x86_64.tar.gz
+/migrations
+/my_env
+/package-lock.json
+/package.json
+/requirements.txt

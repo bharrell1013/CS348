@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Movies {% endblock %}</h1>
+    <div class="content">
+        <form method="GET" action="{{ url_for('index') }}">
+            <select name="sort_by">
+                <option value="">Sort by</option>
+                <option value="release_date" {% if sort_by == 'release_date' %}selected{% endif %}>Release Date</option>
+                <option value="director" {% if sort_by == 'director' %}selected{% endif %}>Director</option>
+                <option value="genre" {% if sort_by == 'genre' %}selected{% endif %}>Genre</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
+        {% for movie in movies %}
+            <div class="movie">
+                <p><b>ID:{{ movie.id }}</b></p>
+                <b>
+                    <p class="title">
+                        <a href="{{ url_for('movie', movie_id=movie.id)}}">{{ movie.title }}</a>
+                    </p>
+                </b>
+                <p>Released in {{ movie.release_year }}</p>
+                <p>Genre: {{ movie.genre.name }}</p>
+                <p>Director: {{ movie.director.name }}</p>
+                <a href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
+                <hr>
+                <form method="POST"
+                        action="{{ url_for('delete', movie_id=movie.id) }}">
+                    <input type="submit" value="Delete Movie"
+                        onclick="return confirm('Are you sure you want to delete this entry?')">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
